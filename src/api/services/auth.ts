@@ -5,6 +5,7 @@ import { useFetchBase } from "../use-fetch-base";
 import { API_URL } from "../config";
 import { wrapperFetchJsonResponse } from "../wrapper-fetch-json-response";
 import { RequestConfigType } from "./types/request-config";
+import { useFetch } from "../use-fetch";
 
 export type AuthLoginRequest = {
   email: string;
@@ -48,5 +49,27 @@ export function useAuthRegisterService() {
       }).then(wrapperFetchJsonResponse<AuthRegisterResponse>);
     },
     [fetchBase]
+  );
+}
+
+export type AuthPatchMeRequest = Pick<
+  User,
+  "bio" | "email" | "image" | "username"
+>;
+
+export type AuthPatchMeResponse = User;
+
+export function useAuthPatchMeService() {
+  const fetch = useFetch();
+
+  return useCallback(
+    (data: AuthPatchMeRequest, requestConfig?: RequestConfigType) => {
+      return fetch(`${API_URL}/auth/me`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        ...requestConfig,
+      }).then(wrapperFetchJsonResponse<AuthPatchMeResponse>);
+    },
+    [fetch]
   );
 }

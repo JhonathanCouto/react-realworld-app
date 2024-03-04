@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { HTTP_CODES_ENUM } from '../types/http-codes';
 import { Field } from '../components/field';
 import { Link } from 'react-router-dom';
+
 type RegisterFormData = {
   username: string;
   email: string;

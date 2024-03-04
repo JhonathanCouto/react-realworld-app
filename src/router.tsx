@@ -3,6 +3,7 @@ import { Layout } from './layouts/layout'
 import { Home } from './pages/home'
 import { Login } from './pages/login'
 import { Register } from './pages/register'
+import { Settings } from './pages/settings'
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />
+      },
+      {
+        path: 'settings',
+        element: <Settings />
       }
     ]
   }
